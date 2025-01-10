@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shark : Enemy
 {
-   private Vector2 moveDirection = Vector2.right; // Hướng di chuyển mặc định
+    private Vector2 moveDirection = Vector2.right; // Hướng di chuyển mặc định
     private SpriteRenderer spriteRenderer;         // Để thay đổi màu và flip X
     [SerializeField] private bool isBulging = false;                // Trạng thái khi Player ở trạng thái bulging
 
@@ -72,7 +72,7 @@ public class Shark : Enemy
     {
         if (spriteRenderer)
         {
-            spriteRenderer.flipX = moveDirection == Vector2.left; // Flip sprite nếu hướng di chuyển là trái
+            spriteRenderer.flipX = moveDirection == Vector2.right; // Flip sprite nếu hướng di chuyển là trái
         }
     }
     
