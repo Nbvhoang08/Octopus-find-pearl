@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class Pass : UICanvas
 {
-    
     public Sprite OnVolume;
     public Sprite OffVolume;
     [SerializeField] private Image buttonImage;
@@ -15,7 +14,7 @@ public class Pass : UICanvas
         Time.timeScale = 1;
         UIManager.Instance.CloseUI<Pass>(0.2f);
         LoadNextScene();
-        SoundManager.Instance.PlayVFXSound(2);
+          SoundManager.Instance.PlayClickSound();
     }
     public void LoadNextScene() 
     { 
@@ -25,12 +24,12 @@ public class Pass : UICanvas
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             SceneManager.LoadScene(nextSceneIndex);
-            Debug.Log("Loading next scene");
         }
         else
         {
             SceneManager.LoadScene("Home");
-            Debug.Log("Home scene");
+            UIManager.Instance.CloseAll();
+            UIManager.Instance.OpenUI<LevelUI>();
         } 
     }
 
@@ -38,7 +37,6 @@ public class Pass : UICanvas
     {
         yield return new WaitForSeconds(0.3f);
         LoadNextScene();
-        Debug.Log("next");
     }
 
     public void HomeBtn()
@@ -47,11 +45,13 @@ public class Pass : UICanvas
         Time.timeScale = 1; 
         SceneManager.LoadScene("Home");        
         UIManager.Instance.OpenUI<LevelUI>();
+        SoundManager.Instance.PlayClickSound();
             
     }
     public void SoundBtn()
     {
         SoundManager.Instance.TurnOn = !SoundManager.Instance.TurnOn;
+        SoundManager.Instance.PlayClickSound();
         UpdateButtonImage();  
     }    
 

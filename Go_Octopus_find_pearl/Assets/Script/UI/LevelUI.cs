@@ -68,7 +68,6 @@ using UnityEngine.SceneManagement;
             }
             for (int i = 0; i < levels.Count; i++)
             {
-                
 
                 Button btn = Instantiate(levelButtonPrefab, buttonContainer);
                 levels[i].levelButton = btn;
@@ -76,10 +75,7 @@ using UnityEngine.SceneManagement;
                 RectTransform rectTransform = btn.GetComponent<RectTransform>();
             
                 rectTransform.sizeDelta = buttonSize;
-
-                // Find the child object with the Image component
-                Transform childWithImage = btn.transform.Find("Image"); // Replace with the actual name of the child object
-                Image buttonImage = childWithImage != null ? childWithImage.GetComponent<Image>() : null;
+                Image buttonImage = btn != null ? btn.GetComponent<Image>() : null;
                 Text buttonText = btn.GetComponentInChildren<Text>();
 
                 if (buttonImage != null)
@@ -118,8 +114,7 @@ using UnityEngine.SceneManagement;
                     {
                         levelData.isUnlocked = true;
                     // Update button appearance
-                        Transform childWithImage = levelData.levelButton.transform.Find("Image"); // Replace with the actual name of the child object
-                        Image buttonImage = childWithImage != null ? childWithImage.GetComponent<Image>() : null;
+                        Image buttonImage = levelData.levelButton != null ? levelData.levelButton.GetComponent<Image>() : null;
                         Text buttonText = levelData.levelButton.GetComponentInChildren<Text>();
                         if (buttonImage != null)
                         {
@@ -138,8 +133,6 @@ using UnityEngine.SceneManagement;
                 }
             }
         }
-
-        
 
 
 

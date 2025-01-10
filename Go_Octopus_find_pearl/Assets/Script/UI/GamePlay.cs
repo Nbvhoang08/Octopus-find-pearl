@@ -13,10 +13,10 @@ public class GamePlay : UICanvas
 
         private void Awake()
         {
-            // if (_gameManager == null)
-            // {
-            //     _gameManager = FindObjectOfType<GameManager>();
-            // }
+            if(player == null)
+            {
+                player = FindObjectOfType<PlayerMoveMent>();
+            }
         }
 
     
@@ -30,35 +30,28 @@ public class GamePlay : UICanvas
         player.Move(dir);
     }
 
-        public void PauseBtn()
-        {
-            UIManager.Instance.OpenUI<Pause>();
-            Time.timeScale = 0;
-        }
+    public void PauseBtn()
+    {
+        UIManager.Instance.OpenUI<Pause>();
+        Time.timeScale = 0;
+        SoundManager.Instance.PlayClickSound();
+    }
 
     private void Update()
     {
+        if(player == null)
+        {
+            player = FindObjectOfType<PlayerMoveMent>();
+        }
         UpdateLevelText();
-            // if (_gameManager == null)
-            // {
-            //     _gameManager = FindObjectOfType<GameManager>();
-            // }
-            // if (_gameManager.hasWon)
-            // {
-            //     WinMess.SetActive(true);
-                
-            // }
-            // else
-            // {
-            //     WinMess.SetActive(false);
-        // }
     }
 
-        private void UpdateLevelText()
-        {
-            if (_levelText != null)
-            {
-                 _levelText.text = "Level: "+ SceneManager.GetActiveScene().name;
-            }
-        }
+    private void UpdateLevelText()
+    {
+       if (_levelText != null)
+        {   
+            int levelNumber = SceneManager.GetActiveScene().buildIndex;
+            _levelText.text = $"Level: {levelNumber:D2}"; // Hiển thị với 2 chữ số, ví dụ: 01, 02
+        }   
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,10 @@ public class UIManager : Singleton<UIManager>
     {
         base.Awake();
         InitializeUICanvases();
+    }
+    void Start()
+    {
+        OpenUI<LevelUI>();
     }
 
     // Khởi tạo tất cả UI Canvas, đặt chúng ở trạng thái không hoạt động

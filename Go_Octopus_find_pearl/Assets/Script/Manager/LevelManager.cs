@@ -5,13 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    // Start is called before the first frame update
     public List<string> sceneNames = new List<string>();
-       
-        
-    // Start is called before the first frame update
-
-
     void Start()
     {
         LoadSavedScenes();
@@ -24,7 +18,6 @@ public class LevelManager : Singleton<LevelManager>
         if (!sceneNames.Contains(currentSceneName))
         {
             sceneNames.Add(currentSceneName);
-            //Debug.Log("Saved current scene name: " + currentSceneName);
             SaveScenesToPrefs();
     
         }
